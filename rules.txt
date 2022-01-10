@@ -1,0 +1,34 @@
+                        +=======================================================================+
+                        |                                                                       |
+                        |                              ATURAN MAIN                              |
+                        |                                                                       |
+                        | > Setiap pemain akan diberikan saldo awal sesuai dengan kategori      |
+                        |   waktu yang dipilih                                                  |
+                        | > Pemain yang melewati garis Start akan mendapatkan gaji sesuai       |
+                        |   kategori waktu yang dipilih                                         |
+                        | > Pemain dapat membeli Kota/Perusahan pada pijakan tanah yang belum   |
+                        |   dibeli oleh pemain lain                                             |
+                        | > Pemain dapat membeli rumah atau hotel pada Kota/Perusahaan yang     |
+                        |   sudah dibeli.                                                       |
+                        | > Pemain dapat membeli Kota dalam 1 kompleks yang sama                |
+                        | > Pemain tidak dapat membeli kota pada kompleks yang sudah dibeli     |
+                        |   oleh pemain lain.                                                   |
+                        | > Pemain yang menginjak pada petak kota/perusahaan yang sudah dibeli	|
+                        |   oleh pemain lain maka akan membayar sewa kepada pemain yang         |
+                        |   memiliki kota/perusahaan tersebut sejumlah harga sewa kota tersebut	|
+                        |   dan harga sewa bisa bertambah jika pemain lain menambahkan          |
+                        |   rumah atau hotel.                                                   |
+                        | > Pemain akan mendapatkan uang dari pemain lain yang menginjak pada 	|
+                        |   petak kota/perusahaan yang sudah dibeli dan akan bertambah jika     |
+                        |   terdapat hotel atau rumah                                           |
+                        | > Saat pemain menginjak Dana Umum / Kesempatan, pemain harus          |
+                        |   mengikuti perintah atau ketentuan dari Dana Umum atau Kesempatan    |
+                        |   tersebut.                                                           |
+                        | > Saat pemain menginjak Pajak maka pemain harus membayar kepada Bank  |
+                        |   sebesar Rp. 20.000,00                                               |
+                        | > Pemain yang bangkrut dan tidak bisa membayar denda akan langsung    |
+                        |   dianggap kalah.                                                     |
+                        | > Pemain dengan Uang terbanyak saat waktu berakhir adalah pemenangnya |
+                        |   atau jika pemain lain bangkrut dan menyisakan satu pemain.          |
+                        |                                                                       |
+                        +=======================================================================+
