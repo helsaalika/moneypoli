@@ -10,13 +10,15 @@
                         |   dibeli oleh pemain lain                                             |
                         | > Pemain dapat membeli rumah atau hotel pada Kota/Perusahaan yang     |
                         |   sudah dibeli.                                                       |
-                        | > Pemain dapat membeli Kota dalam 1 kompleks yang sama                |
+                        | > Pemain dapat membeli Kota dalam 1 kompleks yang sama, untuk dapat   |
+                        |   membeli kota di kompleks lain pemain harus membeli semua kota       |
+                        |   disatu kompleks tersebut terlebih dahulu                            |
                         | > Pemain tidak dapat membeli kota pada kompleks yang sudah dibeli     |
                         |   oleh pemain lain.                                                   |
                         | > Pemain yang menginjak pada petak kota/perusahaan yang sudah dibeli	|
-                        |   oleh pemain lain maka akan membayar sewa kepada pemain yang         |
+                        |   oleh pemain lain maka akan membayar sewa/denda kepada pemain yang   |
                         |   memiliki kota/perusahaan tersebut sejumlah harga sewa kota tersebut	|
-                        |   dan harga sewa bisa bertambah jika pemain lain menambahkan          |
+                        |   dan harga sewa/denda bisa bertambah jika pemain lain menambahkan    |
                         |   rumah atau hotel.                                                   |
                         | > Pemain akan mendapatkan uang dari pemain lain yang menginjak pada 	|
                         |   petak kota/perusahaan yang sudah dibeli dan akan bertambah jika     |
@@ -26,9 +28,11 @@
                         |   tersebut.                                                           |
                         | > Saat pemain menginjak Pajak maka pemain harus membayar kepada Bank  |
                         |   sebesar Rp. 20.000,00                                               |
-                        | > Pemain yang bangkrut dan tidak bisa membayar denda akan langsung    |
-                        |   dianggap kalah.                                                     |
-                        | > Pemain dengan Uang terbanyak saat waktu berakhir adalah pemenangnya |
-                        |   atau jika pemain lain bangkrut dan menyisakan satu pemain.          |
+                        | > Jika pemain harus membayar sewa namun saldo pemain kurang dari      |
+                        |   harga sewa, maka saldo akan tetap berkurang, dengan asumsi pemain   |
+                        |   tersebut memiliki hutang kepada bank.                               |
+                        | > Pemain dapat menjual properti yang dimiliki jika dibutuhkan dengan  |
+                        |   syarat harus menginjak terlebih dahulu petak yang dituju.           |                                         |
+                        | > Pemain dengan uang terbanyak saat waktu berakhir adalah pemenangnya |
                         |                                                                       |
                         +=======================================================================+
