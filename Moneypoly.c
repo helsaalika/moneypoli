@@ -215,6 +215,7 @@ int pilihJumlahPemain(){
 void inputNamaPemain(int *jumlah_pemain){
 	int i=0;
 	char nama[5];
+	char konfirm = 'n';
 	
 	printf("\t\tMasukkan nama, Tidak boleh ada spasi!\n");
 	
@@ -246,9 +247,14 @@ void inputNamaPemain(int *jumlah_pemain){
 		}
 		
 		strcpy(pemain[*jumlah_pemain-1].nama, "komputer");		//input nama default untuk komputer (nama tidak dapat diubah)
-		printf("\t\tMasukkan nama(default) untuk Komputer adalah komputer");
-		sleep(1);
+		printf("\t\tMasukkan nama(default) untuk Komputer adalah komputer\n");
 	}
+	
+	while(konfirm != 'y'){
+		printf("\t\tTekan 'y' untuk melanjutkan ");
+		scanf("%s", &konfirm);	
+	}
+	
 }
 
 /* === INFO AWAL PEMAIN === */
@@ -273,14 +279,14 @@ void infoAwalPemain(int jumlah_pemain, int timer, int salary, int saldo){
 		printf("\n");
     	printf("                                                    Nama Pemain   = %s\n", pemain[i].nama);
     	printf("                                                    Gaji          = Rp. %d\n", salary);
-		printf("                                                    Saldo Awal    = Rp. %d\n",saldo);
+		printf("                                                    Modal Awal    = Rp. %d\n",saldo);
 		printf("\n");
 		printf("\n");
 	}
 		printf("                                             +==================================+\n");
 	printf("\t\t\n");
 	while(konfirm != 'y'){
-		printf("\t\t Press 'y' to continue to the game ");
+		printf("\t\t Tekan 'y' untuk melanjutkan kedalam game ");
 		scanf("%s", &konfirm);	
 	}
 }
@@ -296,10 +302,10 @@ void pilihWaktu(int *durasi, int *timer, int *salary, int jumlah_pemain, int *ti
 	printf("\n");
 	printf("                                                        Pilih Waktu Bermain\n");
 	printf("\n");
-	printf("                          +========== 15 Menit =========+          +========= 25 Menit ==========+\n");
+	printf("                          +========== 45 Menit =========+          +========= 60 Menit ==========+\n");
     printf("                          |                             |          |                             |\n");
     printf("                          | Gaji        = Rp. 20.000    |          | Gaji        = Rp. 15.000    |\n");
-	printf("                          | Saldo Awal  = Rp. 200.000   |          | Saldo Awal  = Rp. 150.000   |\n");
+	printf("                          | Modal Awal  = Rp. 200.000   |          | Modal Awal  = Rp. 150.000   |\n");
 	printf("                          |                             |          |                             |\n");
 	printf("                          +=========== no 1 ============+          +============ no 2 ===========+\n");
 	printf("\n");
@@ -317,13 +323,13 @@ void pilihWaktu(int *durasi, int *timer, int *salary, int jumlah_pemain, int *ti
 	int saldo;
 	if(terima == 1){
 		saldo = 200000;
-		*timer = 15;
-		*timer_sec = 900;
+		*timer = 45;
+		*timer_sec = 2500;
 		*salary = 20000;
 	}else if(terima == 2){
 		saldo = 150000;
-		*timer = 25;
-		*timer_sec = 1250;
+		*timer = 60;
+		*timer_sec = 3400;
 		*salary = 15000;
 	}
 	

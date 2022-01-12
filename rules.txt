@@ -2,8 +2,8 @@
                         |                                                                       |
                         |                              ATURAN MAIN                              |
                         |                                                                       |
-                        | > Setiap pemain akan diberikan saldo awal sesuai dengan kategori      |
-                        |   waktu yang dipilih                                                  |
+                        | > Setiap pemain akan diberikan modal awal sesuai dengan kategori      |
+                        |   waktu yang dipilih. Waktu yang tersedia yaitu 45 menit dan 60 menit |                                                  |
                         | > Pemain yang melewati garis Start akan mendapatkan gaji sesuai       |
                         |   kategori waktu yang dipilih                                         |
                         | > Pemain dapat membeli Kota/Perusahan pada pijakan tanah yang belum   |
@@ -32,7 +32,7 @@
                         |   harga sewa, maka saldo akan tetap berkurang, dengan asumsi pemain   |
                         |   tersebut memiliki hutang kepada bank.                               |
                         | > Pemain dapat menjual properti yang dimiliki jika dibutuhkan dengan  |
-                        |   syarat harus menginjak terlebih dahulu petak yang dituju.           |                                         |
+                        |   syarat harus menginjak terlebih dahulu petak yang dituju.           |
                         | > Pemain dengan uang terbanyak saat waktu berakhir adalah pemenangnya |
                         |                                                                       |
                         +=======================================================================+
