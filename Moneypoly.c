@@ -198,16 +198,12 @@ int pilihJumlahPemain(){
 	printf("\t\t\n");
 	printf("\t\t\n");
 	
-  	printf("\t\t Pilih Pemain (1-3)");	
-  	scanf("%d", &jumlah_pemain);
-  	
-  	/* perulangan untuk validasi jika user menginput selain angka 1, 2, 3 */
+/* perulangan untuk validasi jika user menginput selain angka 1, 2, 3 */
   	while(jumlah_pemain != 1 && jumlah_pemain != 2 && jumlah_pemain != 3){
-  		printf("\t\t Input a valid number!");
-  		printf("\t\t Select Player (1-3)");
+  		printf("\t\t Masukkan input yang benar !!");
+  		printf("\n\t\t Pilih Pemain (1-3)");
   		scanf("%d", &jumlah_pemain);
-	  }
-	  
+  }
   	return jumlah_pemain;
 }
 
@@ -217,7 +213,7 @@ void inputNamaPemain(int *jumlah_pemain){
 	char nama[5];
 	char konfirm = 'n';
 	
-	printf("\t\tMasukkan nama, Tidak boleh ada spasi!\n");
+	printf("\n\t\tMasukkan nama, Tidak boleh ada spasi!\n");
 	
 	/*kondisi untuk input nama dengan atau tidak ada komputer*/
 	if(*jumlah_pemain == 1){ //manusia vs manusia
@@ -251,7 +247,7 @@ void inputNamaPemain(int *jumlah_pemain){
 	}
 	
 	while(konfirm != 'y'){
-		printf("\t\tTekan 'y' untuk melanjutkan ");
+		printf("\n\t\tTekan 'y' untuk melanjutkan ");
 		scanf("%s", &konfirm);	
 	}
 	
@@ -294,7 +290,8 @@ void infoAwalPemain(int jumlah_pemain, int timer, int salary, int saldo){
 /* === PILIH WAKTU untuk lamanya bermain pada permainan */
 void pilihWaktu(int *durasi, int *timer, int *salary, int jumlah_pemain, int *timer_sec){
 	tampilMenu();
-	int terima, i;
+	int i;
+	char terima;
 	
 	printf("\n");
 	printf("                                                         M O N E Y P O L Y\n");
@@ -312,21 +309,21 @@ void pilihWaktu(int *durasi, int *timer, int *salary, int jumlah_pemain, int *ti
 	printf("\t\t\n");
 	printf("\t\tPilih waktu bermain (1/2) ");
 	
-	scanf("%d", &terima);
+	scanf("%s", &terima);
 	*durasi = terima;
-	while(terima > 2 || terima < 1){
-		printf("Input the valid number!\n");
-		scanf("%d", &terima);
+	while(terima != '2' && terima != '1'){
+		printf("\t\tPilih waktu bermain (1/2) ");
+		scanf("%s", &terima);
 		*durasi = terima;
 	}
 
 	int saldo;
-	if(terima == 1){
+	if(terima == '1'){
 		saldo = 200000;
 		*timer = 45;
 		*timer_sec = 2500;
 		*salary = 20000;
-	}else if(terima == 2){
+	}else if(terima == '2'){
 		saldo = 150000;
 		*timer = 60;
 		*timer_sec = 3400;
@@ -756,10 +753,10 @@ void doKesempatan(int *saldo, int *posisi_pemain, char bidak[5], int indeks_pema
 /* Mengecek saldo untuk pengecekan boleh membeli atau tidak */
 bool cekSaldo(int saldo_pemain, int harga){
 	bool boleh_beli;
-	if(saldo_pemain >= harga){
-		boleh_beli = true;
-	} else {
-		boleh_beli = false;
+	if(saldo_pemain >= harga){			// Pengecekkan saldo
+		boleh_beli = true;				// Jika saldo pemain lebih besar nilainya daripada harga maka
+	} else {							// akan mengemblaikan nilai boleh beli menjadi true
+		boleh_beli = false;				// Jika tidak maka nilai boleh beli dikembalikan sebagai false
 	}
 	return boleh_beli;
 }
@@ -768,13 +765,13 @@ bool cekSaldo(int saldo_pemain, int harga){
 void beliTanah(int saldo_pemain, int harga, int indeks_pemain, int posisi){
 	int indeks_posisi = urutan_langkah[posisi];
 	int i;
-	petak[indeks_posisi].harga_sewa = petak[indeks_posisi].sewa_tanah;
-	pemain[indeks_pemain].saldo = pemain[indeks_pemain].saldo - petak[indeks_posisi].harga_beli;
-	petak[indeks_posisi].status_beli = true;
-	strcpy(petak[indeks_posisi].status_sewa, "Hanya Tanah");
+	petak[indeks_posisi].harga_sewa = petak[indeks_posisi].sewa_tanah;									// Mengganti harga sewa menjadi harga sewa tanah
+	pemain[indeks_pemain].saldo = pemain[indeks_pemain].saldo - petak[indeks_posisi].harga_beli;		// Mengurangi saldo pemain
+	petak[indeks_posisi].status_beli = true;															// Mengganti status beli menjadi true
+	strcpy(petak[indeks_posisi].status_sewa, "Hanya Tanah");											// Mengganti status sewa menjadi Hanya Tanah
 	for(i = 0; i < 28; i++){
-		if(strcmp(petak[i].komplek, petak[indeks_posisi].komplek) == 0){
-			strcpy(petak[i].pemilik, pemain[indeks_pemain].nama);
+		if(strcmp(petak[i].komplek, petak[indeks_posisi].komplek) == 0){		// Mengganti hak milih satu komplek yg terdapat kota yang dibeli
+			strcpy(petak[i].pemilik, pemain[indeks_pemain].nama);				// sebagai indikator syarat harus dibeli semua kota yang ada dikomplek ini
 		}
 	}
 }
@@ -785,7 +782,7 @@ void beliRumah(int *saldo_pemain, int harga, int posisi, char status[15]){
 	int banyak_rumah = 0;
 	int batas_beli;
 	bool saldo_cukup;
-	if(strcmp(status, "Hanya Tanah") == 0){
+	if(strcmp(status, "Hanya Tanah") == 0){					// Mengecek status dan menentukan batas pembelian rumah
 		batas_beli = 3;
 	} else {
 		if(strcmp(status, "1 Rumah") == 0){
@@ -801,7 +798,7 @@ void beliRumah(int *saldo_pemain, int harga, int posisi, char status[15]){
 	if(saldo_cukup == true){
 		*saldo_pemain = *saldo_pemain - harga;
 		switch(batas_beli){
-			case 1 : strcpy(petak[indeks_posisi].status_sewa, "3 Rumah") ; 
+			case 1 : strcpy(petak[indeks_posisi].status_sewa, "3 Rumah") ; 					// Menentukan status sewa dan harga sewa sesuai dengan batas beli
 				 	petak[indeks_posisi].harga_sewa = petak[indeks_posisi].sewa_3rumah;
 			break;
 			case 2 : strcpy(petak[indeks_posisi].status_sewa, "2 Rumah") ; 
@@ -816,20 +813,21 @@ void beliRumah(int *saldo_pemain, int harga, int posisi, char status[15]){
 	}
 }
 
-/* membeli Hotel */
+/* Membeli Hotel */
 void beliHotel(int *saldo_pemain, int harga, int posisi){
 	int indeks_posisi = urutan_langkah[posisi];
-	*saldo_pemain = *saldo_pemain - harga;
-	petak[indeks_posisi].harga_sewa = petak[indeks_posisi].sewa_hotel;
-	strcpy(petak[indeks_posisi].status_sewa, "Hotel");
+	*saldo_pemain = *saldo_pemain - harga;									// Saldo pemain dikurangi harga hotel sesuai dengan parameter
+	petak[indeks_posisi].harga_sewa = petak[indeks_posisi].sewa_hotel;		// Harga sewa diubah menjadi harga sewa hotel
+	strcpy(petak[indeks_posisi].status_sewa, "Hotel");						// Status diubah menjadi "Hotel"
 }
 
+/* Membayar Sewa */
 void bayarSewa(int *saldo, char status_sewa[15], int posisi, int *saldo_pemilik){
-	if(strcmp(status_sewa, "Hanya Tanah") == 0){
-		*saldo = *saldo - petak[posisi].sewa_tanah;
-		*saldo_pemilik = *saldo_pemilik + petak[posisi].sewa_tanah;
+	if(strcmp(status_sewa, "Hanya Tanah") == 0){								
+		*saldo = *saldo - petak[posisi].sewa_tanah;									// Modul ini mengubah nilai saldo pemain dengan dikurangi harga sewa
+		*saldo_pemilik = *saldo_pemilik + petak[posisi].sewa_tanah;					// dan menambah saldo pemilik petak sesuai harga sewa
 	} else {
-		if(strcmp(status_sewa, "1 Rumah") == 0){
+		if(strcmp(status_sewa, "1 Rumah") == 0){									// Akan ada pengecekan terlebih dahulu untuk menentukan harga sewa
 			*saldo = *saldo - petak[posisi].sewa_1rumah;
 			*saldo_pemilik = *saldo_pemilik + petak[posisi].sewa_1rumah;
 		} else {
@@ -854,86 +852,86 @@ void bayarSewa(int *saldo, char status_sewa[15], int posisi, int *saldo_pemilik)
 /*Jual rumah jika pemain komputer*/
 int jualRumahKomputer(int batas_jual){
 	int jual_rumah;
-	jual_rumah = rand() % (batas_jual + 1 - 1) + 1;
-	gotoxy(105,38);printf("Komputer menjual %d rumah", jual_rumah);
-	return jual_rumah;
+	jual_rumah = rand() % (batas_jual + 1 - 1) + 1;						// Jika pemain adalah komputer dan rumah ada 2 atau 3, maka keputusan komputer 
+	gotoxy(105,38);printf("Komputer menjual %d rumah", jual_rumah);		// menjual rumah di random dari 1 sampai 2 (untuk 2 rumah), atau 1 sampai 3 (untuk 3 rumah)
+	return jual_rumah;													// sesuai batas jual
 	sleep(3);
 }
 
 /*Jual Properti*/
 void jualProperti(int *saldo_pemain, int harga, int indeks_posisi, char status[15], int harga_sewa, int jual_semua, char komplek[20], char pemain[10]){
 	int batas_jual, banyak_rumah, jual_rumah, i;
-	if(jual_semua == 2 ){
-		if(strcmp(status, "2 Rumah") == 0){
-			banyak_rumah = 2;
+	if(jual_semua == 2 ){							// Jika pilihan pemain adalah 2 
+		if(strcmp(status, "2 Rumah") == 0){			// Jika status 2 rumah
+			banyak_rumah = 2;						// Maka batas rumah dan batas jual rumah adalah 2
 			batas_jual = 2;		
 		} else {
-			if(strcmp(status, "3 Rumah") == 0){
-				batas_jual = 3;
+			if(strcmp(status, "3 Rumah") == 0){		// Jika status adalah 3 rumah
+				batas_jual = 3;						// Maka baras rumah dan bataas jual rumah adalah 3
 				banyak_rumah = 3;
 			} else {
-				if(strcmp(status, "Hotel") == 0){
-					gotoxy(105,37);printf("Anda menjual hotel");
+				if(strcmp(status, "Hotel") == 0){					// Jika status adalah hotel 
+					gotoxy(105,37);printf("Anda menjual hotel");	// Maka akan dimunculkan info bahwa pemain menjual hotel
 				} else {
-					gotoxy(105,37);printf("Anda menjual 1 rumah");
+					gotoxy(105,37);printf("Anda menjual 1 rumah");		// Jika bukan dari 3 kondisi di atas berarti pemain menjual 1 rumah
 				}
 			}
 		}
-		if(strcmp(status, "2 Rumah") == 0 || strcmp(status, "3 Rumah") == 0){
-			if(strcmp(pemain, "komputer") == 1 || strcmp(pemain, "komputer") == -1){
-				gotoxy(105,37);printf("Banyak rumah yang ingin dijual (Batas %d rumah) ", batas_jual);
+		if(strcmp(status, "2 Rumah") == 0 || strcmp(status, "3 Rumah") == 0){							// Masih dengan kondisi 2 atau 3 rumah
+			if(strcmp(pemain, "komputer") == 1 || strcmp(pemain, "komputer") == -1){					// Jika pemain bukan merupakan komputer
+				gotoxy(105,37);printf("Banyak rumah yang ingin dijual (Batas %d rumah) ", batas_jual);	// Menanyakan banyak rumah yang akan dijual
 				scanf("%d", &jual_rumah);				
-			} else {
-				if(strcmp(status, "2 Rumah") == 0){	
-					jual_rumah = jualRumahKomputer(batas_jual);
-					
+			} else {												// Jika pemain merupakan komputer
+				if(strcmp(status, "2 Rumah") == 0){					// Jika status 2 rumah
+					jual_rumah = jualRumahKomputer(batas_jual);		// Maka dengan batas jumlah jual yg sudah di setting di baris 757, banyak rumah yang dijual
+																	// ditentukan melalui modul jualRumahKomputer
 				} else {
-					jual_rumah = jualRumahKomputer(batas_jual);
-				}
+					jual_rumah = jualRumahKomputer(batas_jual);		// Jika 3 rumah maka dengan batas jual rumah yg sudah di setting di baris 760, banyak rumah yg dijual
+				}													// ditentukan melalui modul jualRumahKomputer
 			}
 		}		
-		banyak_rumah = banyak_rumah - jual_rumah;
+		banyak_rumah = banyak_rumah - jual_rumah;		// Banyak rumah dikurangi dengan banyak rumah yg dijual, ini untuk menentukan status sewa selanjutnya
 		switch(banyak_rumah){
 			case 2 : 
-				strcpy(petak[indeks_posisi].status_sewa, "2 Rumah");
-				petak[indeks_posisi].harga_sewa = petak[indeks_posisi].sewa_2rumah;
+				strcpy(petak[indeks_posisi].status_sewa, "2 Rumah");					// Jika sisa banyak rumah adalah 2 maka status diganti menjadi "2 Rumah"
+				petak[indeks_posisi].harga_sewa = petak[indeks_posisi].sewa_2rumah;		// dan harga sewa menjadi harga sewa 2 rumah
 				break;
 			case 1 : 
-				strcpy(petak[indeks_posisi].status_sewa, "1 Rumah");
-				petak[indeks_posisi].harga_sewa = petak[indeks_posisi].sewa_1rumah;
+				strcpy(petak[indeks_posisi].status_sewa, "1 Rumah");					// Jika sisa banyak rumah adalah 2 maka status diganti menjadi "3 Rumah"
+				petak[indeks_posisi].harga_sewa = petak[indeks_posisi].sewa_1rumah;		// dan harga sewa menjadi harga sewa 1 rumah
 				break;
 			case 0 :
-				strcpy(petak[indeks_posisi].status_sewa, "Hanya Tanah");
-				petak[indeks_posisi].harga_sewa = petak[indeks_posisi].sewa_tanah;
+				strcpy(petak[indeks_posisi].status_sewa, "Hanya Tanah");				// Jika tidak ada sisa rumah maka status diganti menjadi "Hanya Tanah"
+				petak[indeks_posisi].harga_sewa = petak[indeks_posisi].sewa_tanah;		// dan harga sewa menjadi harga sewa tanah
 				break;
 			default :
-				petak[indeks_posisi].harga_sewa = harga_sewa;	
-				strcpy(petak[indeks_posisi].status_sewa, "Hanya Tanah");
+				petak[indeks_posisi].harga_sewa = harga_sewa;							// Jika tidak ada sisa rumah maka status diganti menjadi "Hanya Tanah"
+				strcpy(petak[indeks_posisi].status_sewa, "Hanya Tanah");				// dan harga sewa menjadi harga sewa yang ada di parameter
 				break;				
 		}
 		harga = jual_rumah * petak[indeks_posisi].harga_rumah;
 	} else {
-		if(jual_semua == 1){
+		if(jual_semua == 1){				// Jika pilihan pemain adalah 1
 			int hitung = 0;
-			for(i = 0; i < 28; i++){ 		// cek jika ini adalah kota terakhir dalam satu komplek yang dijual
+			for(i = 0; i < 28; i++){ 																// cek jika ini adalah kota terakhir dalam satu komplek yang dijual
 				if(strcmp(petak[i].komplek, komplek) == 0 && petak[i].status_beli == true){
-					hitung++ ;
-				}
-			}
-			if(hitung == 1){				// Jika 
+					hitung++ ;																		// dihitung banyak kota dalam satu komplek yang tersisa
+				}																					// jika nantinya hitung hanya ada 1 maka nama hak milik pemain terhadap
+			}																						// komplek akan dihapus
+			if(hitung == 1){			 
 				for(i = 0; i < 28; i++){
 					if(strcmp(petak[i].komplek, komplek) == 0){
-						strcpy(petak[i].pemilik, " ");
+						strcpy(petak[i].pemilik, " ");			// penghapusan hak milik
 					}	
 				}
 			}
-			petak[indeks_posisi].status_beli = false;
-			petak[indeks_posisi].harga_sewa = harga_sewa;	
-			strcpy(petak[indeks_posisi].status_sewa, status);
+			petak[indeks_posisi].status_beli = false;			// pengubahan status beli menjadi false
+			petak[indeks_posisi].harga_sewa = harga_sewa;		// harga sewa menjadi harga sewa sesuai dengan parameter yang diberikan
+			strcpy(petak[indeks_posisi].status_sewa, status);	// status menjadi status sewa sesuai dengan parameter yang diberikan
 		}		
 	}
 
-	*saldo_pemain = *saldo_pemain + harga;	
+	*saldo_pemain = *saldo_pemain + harga;			// saldo pemain bertambah sesuai harga properti
 }
 
 /*Membayar Pajak*/
@@ -1335,7 +1333,7 @@ void checkValidity(){
 }
 
 void pilihMenu(){
-	int no_menu;
+	char no_menu;
 
 	printf("\t\t\n");
 	printf("\t\t                                              M O N E Y P O L Y\n");
@@ -1347,14 +1345,18 @@ void pilihMenu(){
 	printf("\t\t\n");
 	printf("\t\t\n");
 	
-	printf("\t\tPilih menu (1-3) ");
-	scanf("%d", &no_menu);
+	printf("\t\t Pilih menu (1-3) ");
+	scanf("%s", &no_menu);
+	while(no_menu != '1' && no_menu != '2' && no_menu != '3'){
+  		printf("\t\t Masukkan input yang benar !!\n");
+  		printf("\t\t Pilih menu (1-3) ");
+  		scanf("%s", &no_menu);
+	  }
 	
 	switch(no_menu){
-		case 1 : gameStart(); break;
-		case 2 : rules(); break;
-		case 3 : exitGame(); break;
-    default: printf("Masukkan angka antara 1 sampai 3"); break;
+		case '1' : gameStart(); break;
+		case '2' : rules(); break;
+		case '3' : exitGame(); break;
 	}
 }
 
@@ -1367,4 +1369,3 @@ int main() {
 	menu();
   return 0;
 }
-

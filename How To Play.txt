@@ -1,0 +1,64 @@
+					
+				       HOW TO PLAY
+				      (Cara Bermain)
+    ====================================================================================
+
+	MENU
+	====
+   	Pada tampilan menu, silakan ketikkan 1 untuk memulai permainan, 
+   	ketik 2 untuk melihat aturan bermain monopoli, dan 3 untuk keluar
+
+
+	SEBELUM BERMAIN
+	===============
+	1. Jika memilih 1 pada menu, anda akan diarahkan untuk memilih 
+	   pemain, ada 3 pilihan pemain, silakan pilih dengan memasukkan nomor 
+           pilihan 1, 2, atau 3
+	2. Selanjutnya pemain memilih waktu bermain, ada 2 pilihan waktu bermain 
+   	   (45 menit dan 1 jam), silakan pilih dengan memasukkan nomor pilihan 
+	   1 atau 2
+	3. Akan tampil info awal, dan untuk memulai silakan ketikkan “y”
+
+
+	DALAM PERMAINAN
+	===============
+	1. Dalam permainan, pemain yang mendapat giliran mengetikkan "1" untuk 
+	   mengocok dadu	
+	2. Selanjutnya tergantung pada petak 
+		- Jika menginjak kesempatan / dana umum dan ketentuan merupakan 
+		  perpindahan petak, silakan tunggu hingga bidak anda berpindah 
+		  sesuai dengan ketentuan kesempatan
+		- Jika menginjak kesempatan / dana umum dan ketentuan berhubungan 
+	 	  dengan pengurangan atau penambahan saldo, maka akan otomatis 
+		  berkurang/bertambah
+		- Jika bisa membeli kota atau kota milik pemain, maka akan ada 
+		  konfirmasi apakah ingin membeli atau menjual properti dari program. 
+	  	  Ketikkan 1 untuk membeli dan 2 untuk menjual.
+		- Pada fitur jual properti akan ada konfirmasi apakah hanya menjual 
+		  properti atau beserta tanah. Ikuti petunjuk konfirmasi, seperti 
+		  mengetikkan “y” untuk setuju dan “n” untuk lewat
+		- Pada fitur beli properti akan ada konfirmasi apakah akan membeli 
+		  properti. Ketikkan “y” untuk setuju dan “n” untuk lewat
+	3. Untuk mengganti giliran pemain, silakan ketikkan 1
+	4. Jika lawan anda komputer, maka komputer akan otomatis bermain, seperti
+	   mengocok dadu, membeli properti, menjual propert. Silakan tunggu hingga 
+	   komputer mengganti giliran
+	5. Langkah 1 sampai 3 akan berulang selama permainan hingga waktu habis, dan pemenang ditentukan
+
+
+	SETELAH PERMAINAN
+	=================
+	1. Akan ditampilkan pemenang dari permainan
+	2. Anda bisa melihat daftar pemenang dalam permainan dengan mengetikkan "y"
+	   pada prompt konfirmasi 
+
+
+	ATURAN BERMAIN
+	==============
+	Setelah selesai membaca aturan bermain, ketikkan “y” untuk kembali ke halaman Menu
+
+
+	KELUAR
+	======
+	Ketikkan “y” untuk keluar, atau ketikkan “n” untuk kembali ke halaman Menu
+
