@@ -340,10 +340,108 @@ void pilihWaktu(int *durasi, int *timer, int *salary, int jumlah_pemain, int *ti
 	 infoAwalPemain(jumlah_pemain, *timer, *salary, saldo);
 }
 
+/* === MEMASUKKAN PEMENANG === */
+// referensi : https://youtu.be/1lNL31q4T5I
+ void inputPemenang(char nama_pemain[10], int saldo_pemain){	
+ 	typedef struct{
+ 		char nama[10];
+ 		int saldo;
+	 }highscore;
+	 
+	int i, n=2;
+	highscore *s;
+	
+	FILE *fp;
+	
+	s=(highscore*)calloc(n, sizeof(highscore));	
+	fp = fopen("highscore.dat", "a");
+    
+    if (fp == NULL)
+    {
+        /* Unable to open file hence exit */
+        printf("\nUnable to open 'highscore.dat' file.\n");
+        printf("Please check whether file exists and you have write privilege.\n");
+        exit(EXIT_FAILURE);
+    }
+
+	strcpy(s[0].nama, nama_pemain);
+	s[0].saldo=saldo_pemain;
+	fwrite(s,sizeof(highscore),1,fp);
+	fclose(fp);
+ }
+
+/* === MENAMPILKAN DAFTAR PEMENANG === */
+  // referensi : https://youtu.be/1lNL31q4T5I
+ void tampilPemenang(){
+ 	typedef struct{
+ 		char nama[10];
+ 		int saldo;
+	 }highscore;
+ 	int i, j, n, x, y;
+	highscore *s, s1;
+	
+	FILE *fp;
+	fp = fopen("highscore.dat", "r");
+	fseek(fp,0,SEEK_END);
+	n=ftell(fp)/sizeof(highscore);
+	s=(highscore*)calloc(n, sizeof(highscore));	
+    
+    if (fp == NULL)
+    {
+        /* Unable to open file hence exit */
+        printf("\nUnable to open 'highscore.dat' file.\n");
+        printf("Please check whether file exists and you have write privilege.\n");
+        exit(EXIT_FAILURE);
+    }
+    
+    rewind(fp);
+	for(i=0;i<n;i++){
+		fread(&s[i],sizeof(highscore),1,fp);
+	}
+	
+	for(i=0;i<n;i++){
+		for(j=i+1;j<n;j++){
+			if(s[j].saldo>s[i].saldo){
+				s1=s[i];
+				s[i]=s[j];
+				s[j]=s1;
+			}
+			
+		}
+	}
+ 	
+ 	tampilMenu();
+ 	x=40;
+ 	y=16;
+	gotoxy(x,y);printf("\t+=================================+");
+	y++;
+	gotoxy(x,y);printf("\t|          DAFTAR PEMENANG        |");
+	y++;
+	gotoxy(x,y);printf("\t+=================================+");
+	y++;
+	gotoxy(x,y);printf("\t|     Nama       |     Saldo      ");gotoxy(x+42,y);printf("|");
+	y++;
+	gotoxy(x,y);printf("\t+=================================+");
+	y++;
+	for(i=0;i<n;i++){
+		gotoxy(x,y);printf("\t|   %s", s[i].nama);
+		gotoxy(x+25,y);printf("|     %d", s[i].saldo);
+		gotoxy(x+42,y);printf("|");
+		y++;
+	}
+	fclose(fp);
+	
+	y+=2;
+	gotoxy(45,y);printf("Ketik Apapun Untuk Selesai");
+	getch();
+	printf("\n\n");
+ }
+
 /* Ketentuan Menang Kalah */
 void ketentuanMenang(int jumlah_pemain){
 	int i, max = 0;
 	char pemainWin[20];
+	char konfirm = 'n';
 	
 	for(i = 0; i < jumlah_pemain; i++){
 		if(pemain[i].saldo > max){
@@ -352,6 +450,9 @@ void ketentuanMenang(int jumlah_pemain){
 		}
 		printf("%d\n", pemain[i].saldo);
 	}
+	
+	inputPemenang(pemainWin, max);
+	//tampilPemenang();
 	
 	for(i=1;i<=15;i++)
 	{
@@ -364,6 +465,11 @@ void ketentuanMenang(int jumlah_pemain){
 		gotoxy(3,25-i); printf("\t\t    $$        $$$       $$$$$$      $$$$     $$$$  $$  $$    $$$$ \n");
 	}
 	printf("\n");
+	gotoxy(10,25); printf("Lihat Daftar Pemenang (y / n) ? ");
+	scanf("%s", &konfirm);	
+	if(konfirm == 'y'){
+		tampilPemenang();
+	}
 	printf("===========================================================================================\n");
 
 }
@@ -1098,7 +1204,7 @@ int konfirmasi(char perintah[15], char pemain[10]){
 	} else {
 		konfirm = 1;
 		gotoxy(30,37);printf("Komputer meng%s", perintah);
-		sleep(3);
+		sleep(5);
 	}
 	return konfirm; 	
 }
